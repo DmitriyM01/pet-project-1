@@ -43,7 +43,7 @@ const App = () => {
   })
 
   return (
-    <div className="background-image" style={{backgroundImage: `url('../public/${background}.jpg')`}}>
+    <div className="background-image" style={{backgroundImage: `url('/${background}.jpg')`}}>
       <Weather></Weather>
       <Data></Data>
       <Tasks 

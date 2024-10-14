@@ -4,8 +4,8 @@ export default new Promise((resolve) => {
 
         const url = "http://suggestions.dadata.ru/suggestions/api/4_1/rs/geolocate/address";
         const token = "275498e8c188299bb1ae0dcc5d32a3e58501ecf8";
-        // const query = { lat: position.coords.latitude, lon: position.coords.longitude, language: 'ru', count: 1 };
-        const query = { lat: 56.0183900, lon: 92.8671700, count: 1 };
+        const query = { lat: position.coords.latitude, lon: position.coords.longitude, language: 'ru', count: 1 };
+        // const query = { lat: 56.0183900, lon: 92.8671700, count: 1 };
 
         const options = {
             method: "POST",
