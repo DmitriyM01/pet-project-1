@@ -1,16 +1,38 @@
 import { useEffect, useState } from "react";
 
-import getWeather from "../utilites/getWeather.js";
+import { getCurrentWeather } from "../utilites/getWeather.js";
 
 const Weather = () => {
     const [ weather, setWeather ] = useState('');
     const [ temperature, setTemperature ] = useState(0);
 
     useEffect(() => {
-        getWeather.then(data => {
-            setWeather(data.weather);
-            setTemperature(Math.round(data.temperature))
-        });
+        const updateWeather = (position) => {
+            getCurrentWeather(position)
+                .then((data) => {
+                    setWeather(data.weather);
+                    setTemperature(Math.round(data.temperature));
+                })
+                .catch((err) => console.log(err));
+        };
+
+        const handleGeolocationPermission = async () => {
+            const permissionStatus = await navigator.permissions.query({ name: 'geolocation' });
+
+            navigator.geolocation.getCurrentPosition(
+                updateWeather,
+                () => updateWeather()
+            );
+            permissionStatus.onchange = () => {
+                if (permissionStatus.state === 'granted') {
+                    navigator.geolocation.getCurrentPosition(updateWeather);
+                } else {
+                    updateWeather();
+                }
+            };
+        }
+
+        handleGeolocationPermission();
     }, []);
 
     return (

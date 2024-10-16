@@ -49,7 +49,6 @@ const Tasks = ({ setNewTask, newTask, setModalState, modalState }) => {
                 <hr />
                 <div className="modal-content">
                     {ids.map((id) => {
-                        console.log(tasks[id])
                         const { task, finished } = tasks[id]
                         return (
                             <div className="task" key={id}>
@@ -64,7 +63,7 @@ const Tasks = ({ setNewTask, newTask, setModalState, modalState }) => {
                 </div>
                 <div className="modal-footer">
                     <form className="modal-form" onSubmit={onSubmit}>
-                        <input required ref={input} className="modal-input" type="text" name="task" placeholder="New Task"  onChange={e => setNewTask(e.target.value)} value={newTask} />
+                        <input required ref={input} className="modal-input" type="text" name="task" placeholder="New Task" autoсomplete="off"  onChange={e => setNewTask(e.target.value)} value={newTask} />
                     </form>
                 </div>
             </div>

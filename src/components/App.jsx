@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 
 import { actions as timeActions } from '../slices/timeSlice.js';
-import getCity from '../utilites/getCity.js';
 
 import Weather from './Weather.jsx';
 import Data from './Date.jsx';
@@ -18,8 +17,6 @@ const App = () => {
 
   // Здесь у нас определение города по  широте и долготе и таймер с текущим временем
   useEffect(() => {
-    getCity.then((data) => window.localStorage.setItem('city', data))
-
     const date = new Date();
     dispatch(timeActions.setCurrentTime(date));
     const timer = setInterval(() => {
